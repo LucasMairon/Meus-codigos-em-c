@@ -1,5 +1,7 @@
 #include<stdio.h>
 
+#include<locale.h>
+
 #include<stdlib.h>
 
 typedef struct Funcionario{
@@ -12,6 +14,8 @@ typedef struct Funcionario{
 }funcionario; 
 
 int main(){
+
+    setlocale(LC_ALL,"Portuguese");
     
     int n,i;
     
@@ -28,30 +32,43 @@ int main(){
             exit(1);
             
         }
+
+    
+
         for(i=0;i<n;i++){
-            printf("digite o nome do %d funcionario: ",i+1);
+
+            printf("==================================================================================\n");
+            
+            printf("vez do %d° funcionário:\n",i+1);
+
+            printf("==================================================================================\n");
+
+            printf("digite seu nome: ");
             
             scanf(" %[^\n]s",quant[i].nome);
             
-            printf("digite o salario do %d funcionario: ",i+1);
+            printf("digite seu salário: ");
             
             scanf("%f",&quant[i].salario);
             
-            printf("digite o cargo do %d funcionario: ",i+1);
+            printf("digite seu cargo: ");
             
             scanf(" %[^\n]s",quant[i].cargo);
+
+            
             
         }
         
     printf("==================================================================================\n");
     
         for(i=0;i<n;i++){
-            
-            printf("nome do %d° funcionario: %s\n",i+1,quant[i].nome);
+            printf("dados do %d° funcionário:\n",i+1);
+
+            printf("nome: %s\n",quant[i].nome);
    
-            printf("salario do %d° funcionario: %.2f\n",i+1,quant[i].salario);
+            printf("salário: %.2f\n",quant[i].salario);
    
-            printf("cargo do %d° funcionario: %s\n",i+1,quant[i].cargo);
+            printf("cargo: %s\n",quant[i].cargo);
             
             printf("==================================================================================\n");
             
