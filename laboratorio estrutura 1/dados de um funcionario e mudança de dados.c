@@ -5,10 +5,15 @@
 #include<string.h>
 
 typedef struct funcionario{
+    
     char nome[50];
+    
     float salario;
+    
     char cargo[50];
+    
     int identificador;
+    
 }Funcionario;
 
 void preenche(Funcionario * dados, int quant){
@@ -48,8 +53,10 @@ void imprime( Funcionario *impr,int quant){
     printf("o id do %d funcionario e: %d\n",i+1,impr[i].identificador);
    
 }
+    
 }
 void muda_salario(Funcionario * sal,int quant){
+    
     int i,alteracao;
     
     printf("deseja alterar o valor do salario dos funcionarios?(use 1 para sim e 2 para nao)\n");
@@ -99,13 +106,21 @@ void maior_salario(Funcionario *maiorsal,int quant){
 
 int main(){
   
- int quant_func;
+int quant_func;
   
 printf("digite a quantidade de funcionarios: ");
   
 scanf("%d",&quant_func);
   
- Funcionario *dados_func=(Funcionario*) malloc(quant_func*sizeof(Funcionario));
+Funcionario *dados_func=(Funcionario*) malloc(quant_func*sizeof(Funcionario));
+    
+if(dados_func==NULL){
+        
+        printf("memoria insuficiente");
+        
+        exit(1);
+        
+}
   
 preenche(dados_func,quant_func);
   
@@ -114,7 +129,8 @@ imprime(dados_func,quant_func);
 muda_salario(dados_func,quant_func);
   
 maior_salario(dados_func,quant_func);
+    
+free(dados_func);
 
-
-    return 0;
+return 0;
 }
