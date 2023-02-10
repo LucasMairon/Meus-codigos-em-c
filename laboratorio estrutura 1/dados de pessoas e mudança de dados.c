@@ -139,6 +139,14 @@ printf("digite a quantidade de pessoas que serão entrevistadas: ");
 scanf("%d",&quant_pessoa);
   
 Pessoa *dados_pessoa=(Pessoa*) malloc(quant_pessoa*sizeof(Pessoa));
+    
+if(dados_pessoa==NULL){
+    
+    printf("memoria insuficiente");
+    
+    exit(1);
+    
+}
   
 preenche(dados_pessoa,quant_pessoa);
   
@@ -147,7 +155,9 @@ imprime(dados_pessoa,quant_pessoa);
 muda_idade(dados_pessoa,quant_pessoa);
   
 verifica_idade(dados_pessoa,quant_pessoa);
+    
+free(dados_pessoa);
 
-
-    return 0;
+return 0;
+    
 }
