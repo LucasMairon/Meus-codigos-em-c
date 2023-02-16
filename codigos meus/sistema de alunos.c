@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define MAX_VAGAS 5
+#define MAX_VAGAS 3
 
-#define MAX_TURMAS 3
+#define MAX_TURMAS 2
 
 struct aluno
 {
@@ -39,9 +39,7 @@ int main()
   int decisao, i = 0, cont, vagas,aloc;
   char id;
   Turma **turmas = (Turma **)malloc(MAX_TURMAS * sizeof(Turma *));
-  for(aloc=0;aloc<MAX_TURMAS;aloc++){
-       turmas[aloc]=(Turma*) malloc(MAX_TURMAS* sizeof(Turma));
-  }
+  
   if(turmas==NULL){
 
       printf("memoria insuficiente");
@@ -71,16 +69,13 @@ int main()
       {
         printf("criando nova turma...\n");
         printf("digite um id:");
-        scanf(" %c", &turmas[i]->id);
-        turmas[i] = cria_turma(turmas[i]->id);
-        printf("%c\n",turmas[i]->id);
-            // printf("%s",turmas[0]->alunos[0]->nome);
-        // printf("turma %c criada com sucesso",
-        //        turmas[i]->id);
+        scanf(" %c", &id);
+        turmas[i]= cria_turma(id);
+        
       }
       else
       {
-        printf("\nsem espaço para armazenar mais turmas\n");
+        printf("\nsem espaço para armazenar mais turmas\n\n");
       }
 
       break;
@@ -97,7 +92,7 @@ int main()
 
       break;
     case 3:
-      printf("matriculando aluno...");
+      printf("matriculando aluno...\n");
       printf("digite o id da turma: ");
       scanf(" %c", &id);
 
@@ -106,17 +101,17 @@ int main()
         if (turmas[cont]->id == id)
         {
           printf("digite a matricula: ");
-          scanf("%d", turmas[i]->alunos[i]->mat);
+          scanf("%d", turmas[i]->alunos[cont]->mat);
           printf("digite o nome: ");
-          scanf(" %[^\n]s", turmas[i]->alunos[i]->nome);
-          matricula_aluno(turmas,turmas[i]->alunos[i]->mat,turmas[i]->alunos[i]->nome);
+          scanf(" %[^\n]s", turmas[i]->alunos[cont]->nome);
+          matricula_aluno(turmas,turmas[i]->alunos[cont]->mat,turmas[i]->alunos[cont]->nome);
 
           for (vagas = 0; vagas < MAX_VAGAS; vagas++)
           {
-            if (turmas[cont]->alunos[vagas] == NULL)
+            if (turmas[i]->alunos[vagas] == NULL)
             {
               printf("aluno matriculado com sucesso");
-              matricula_aluno(turmas[i], turmas[i]->alunos[i]->mat, turmas[i]->alunos[i]->nome);
+              // matricula_aluno(turmas[i], turmas[i]->alunos[i]->mat, turmas[i]->alunos[i]->nome);
             }
             else
             {
@@ -127,9 +122,11 @@ int main()
 
         else
         {
-          printf("turma inexistente");
+          printf("turma inexistente\n");
         }
       }
+      
+        
 
       ;
 
@@ -159,35 +156,37 @@ for(aloc=0;aloc<MAX_TURMAS;aloc++){
 
 
 
+    
 
   return 0;
 }
 
 Turma *cria_turma(char id)
 {
-  Turma n_turmas;
+  Turma *n_turmas=(Turma*) malloc(MAX_VAGAS*sizeof(Turma));
   int i;
-  n_turmas.id=id;
-  n_turmas.vagas=MAX_VAGAS;
-//   n_turmas->vagas = MAX_VAGAS;
-// //   for (i = 0; i < MAX_VAGAS; i++)
-// //   {
+  n_turmas->id = id;
+  n_turmas->vagas = MAX_VAGAS;
+  
+  for (i = 0; i < MAX_VAGAS; i++)
+  {
+      n_turmas->alunos[i]= NULL;
+  }
+  printf("turma %c criada com sucesso\n",n_turmas->id);
 
-// //     n_turmas= NULL;
-// //   }
-  printf("turma %c criada com sucesso   seu id: %c\n",n_turmas.id,id);
-//   scanf(" %[^\n]s",n_turmas.alunos[0]->nome);
 
-  return (&n_turmas);
+  return (n_turmas);
 }
 void matricula_aluno(Turma *turma, int mat, char *nome)
 {
-    int c=0;
-    for(c=0;c<MAX_VAGAS;c++){
-        turma[c].id=mat;
-         *turma[c].alunos[c]->nome = (*nome);
-
-    }
+  
+    int c = 0,i=0;
+    // for(i=0;i<MAX_TURMAS;i++){
+    //   for(c=0;c<MAX_VAGAS;c++){
+    //     turma[c]aluno[i]->mat=mat;
+    //      turma[c]->aluno[i]->nome = *nome;
+    //   }
+    // }
 
 
 
@@ -238,17 +237,17 @@ if (turma[i].id == id){
 }
 }
 void imprime_turmas(Turma **turmas, int n){
-int i;
-// for(i=0;i<MAX_VAGAS;i++){
-// if(turmas)
+int i,vd,index;
 
-// }
-
-
-
-for(i=0;i<n;i++){
-    printf("Turma %c - \n",turmas[i]->id);
-
+  for(i=0;i<n;i++){
+    vd = 0;
+    for(index=0;index<=MAX_VAGAS;index++){
+    if(turmas[i]->alunos[index] == NULL){
+        vd++;
+    }
+  }
+  turmas[i]->vagas=vd;
+  printf("Turma %c vagas disponiveis: %d\n",turmas[i]->id,turmas[i]->vagas);
 }
 
 
