@@ -156,15 +156,15 @@ Turma *cria_turma(char id)
 {
   Turma *n_turmas;
   int i;
-  n_turmas->id = id;
+  
   n_turmas->vagas = MAX_VAGAS;
   for (i = 0; i < MAX_VAGAS; i++)
   {
 
-    n_turmas->alunos[i] = NULL;
+    n_turmas= NULL;
   }
 
-  return (n_turmas);
+  return (*n_turmas);
 }
 void matricula_aluno(Turma *turma, int mat, char *nome)
 {
@@ -222,4 +222,18 @@ if (turma[i].id == id){
 
 
 }
+}
+void imprime_turmas(Turma **turmas, int n){
+
+
+
+
+}
+
+Turma *procura_turma(Turma **turmas, int n, char id){
+
+
+
+
+
 }
