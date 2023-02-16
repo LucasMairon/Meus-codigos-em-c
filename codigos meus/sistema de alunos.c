@@ -71,19 +71,30 @@ int main()
       {
         printf("criando nova turma...\n");
         printf("digite um id:");
-        scanf(" %c", turmas[i]->id);
+        scanf(" %c", &turmas[i]->id);
         turmas[i] = cria_turma(turmas[i]->id);
-
-        printf("turma %c criada com sucesso",
-               turmas[i]->id);
+        printf("%c\n",turmas[i]->id);
+            // printf("%s",turmas[0]->alunos[0]->nome);
+        // printf("turma %c criada com sucesso",
+        //        turmas[i]->id);
       }
       else
       {
-        printf("sem espaço para armazenar mais turmas\n");
+        printf("\nsem espaço para armazenar mais turmas\n");
       }
 
       break;
     case 2:
+    printf("listando turmas...\n");
+        imprime_turmas(turmas,i);
+
+
+
+
+
+
+
+
       break;
     case 3:
       printf("matriculando aluno...");
@@ -154,17 +165,20 @@ for(aloc=0;aloc<MAX_TURMAS;aloc++){
 
 Turma *cria_turma(char id)
 {
-  Turma *n_turmas;
+  Turma n_turmas;
   int i;
-  
-  n_turmas->vagas = MAX_VAGAS;
-  for (i = 0; i < MAX_VAGAS; i++)
-  {
+  n_turmas.id=id;
+  n_turmas.vagas=MAX_VAGAS;
+//   n_turmas->vagas = MAX_VAGAS;
+// //   for (i = 0; i < MAX_VAGAS; i++)
+// //   {
 
-    n_turmas= NULL;
-  }
+// //     n_turmas= NULL;
+// //   }
+  printf("turma %c criada com sucesso   seu id: %c\n",n_turmas.id,id);
+//   scanf(" %[^\n]s",n_turmas.alunos[0]->nome);
 
-  return (*n_turmas);
+  return (&n_turmas);
 }
 void matricula_aluno(Turma *turma, int mat, char *nome)
 {
@@ -224,7 +238,18 @@ if (turma[i].id == id){
 }
 }
 void imprime_turmas(Turma **turmas, int n){
+int i;
+// for(i=0;i<MAX_VAGAS;i++){
+// if(turmas)
 
+// }
+
+
+
+for(i=0;i<n;i++){
+    printf("Turma %c - \n",turmas[i]->id);
+
+}
 
 
 
