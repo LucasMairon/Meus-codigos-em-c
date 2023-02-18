@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include<string.h>
 
 #define MAX_VAGAS 3
 
@@ -52,12 +53,12 @@ int main()
   do
   {
     printf("MENU:\n");
-    printf("1 – Criar turma\n");
-    printf("2 – Listar turmas\n");
-    printf("3 – Matricular aluno\n");
-    printf("4 – Lancar notas\n");
-    printf("5 – Listar alunos\n");
-    printf("6 – Sair\n");
+    printf("1 - Criar turma\n");
+    printf("2 - Listar turmas\n");
+    printf("3 - Matricular aluno\n");
+    printf("4 - Lancar notas\n");
+    printf("5 - Listar alunos\n");
+    printf("6 - Sair\n");
     printf("Digite sua opcao:\n");
     scanf("%d", &decisao);
 
@@ -101,7 +102,7 @@ int main()
         if (turmas[cont]->id == id)
         {
           printf("digite a matricula: ");
-          scanf("%d", turmas[i]->alunos[cont]->mat);
+          scanf("%d", &turmas[i]->alunos[cont]->mat);
           printf("digite o nome: ");
           scanf(" %[^\n]s", turmas[i]->alunos[cont]->nome);
           matricula_aluno(turmas,turmas[i]->alunos[cont]->mat,turmas[i]->alunos[cont]->nome);
@@ -181,12 +182,20 @@ void matricula_aluno(Turma *turma, int mat, char *nome)
 {
   
     int c = 0,i=0;
-    // for(i=0;i<MAX_TURMAS;i++){
-    //   for(c=0;c<MAX_VAGAS;c++){
-    //     turma[c]aluno[i]->mat=mat;
-    //      turma[c]->aluno[i]->nome = *nome;
-    //   }
-    // }
+    for(i=0;i<MAX_TURMAS;i++){
+      // if(turma->alunos[i]=NULL){
+      //   turma->alunos[i]->notas[i]=0;
+      //   turma->alunos[i]->mat=mat;
+      //    turma->alunos[i]->nome = nome;
+      // }
+      for(c=0;c<MAX_VAGAS;c++){
+       if(turma[i].alunos[c]=NULL){
+        turma[i].alunos[c]->notas[i]=0;
+        turma[i].alunos[c]->mat=mat;
+         turma[i].alunos[c]->nome = nome;
+      }
+      }
+    }
 
 
 
@@ -204,7 +213,7 @@ for(i=0;i<MAX_TURMAS;i++){
 if (turma[i].id == id){
     printf("matricula: %d\t Aluno: %s",i+1,turma[i].alunos[i]->nome);
     printf("digite a nota %d",i+1);
-    scanf("%f",turma[i].alunos[i]->notas[i]);
+    scanf("%f",&turma[i].alunos[i]->notas[i]);
 
 
 }
@@ -228,7 +237,7 @@ for(i=0;i<MAX_TURMAS;i++){
 if (turma[i].id == id){
     printf("matricula: %d\n nome: %s",i+1,turma[i].alunos[i]->nome);
     printf("digite a nota %d",i+1);
-    scanf("%f",turma[i].alunos[i]->notas[i]);
+    scanf("%f",&turma[i].alunos[i]->notas[i]);
     soma[i]+=(*turma[i].alunos[i]->notas);
 
 }
