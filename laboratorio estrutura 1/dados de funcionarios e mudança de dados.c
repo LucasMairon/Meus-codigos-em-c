@@ -1,5 +1,5 @@
-// Crie um tipo estruturado para armazenar dados de um funcionàrio. Uma estrutura deste tipo possui
-// os seguintes campos: nome, sal ́ario, identificador e cargo.
+// Crie um tipo estruturado para armazenar dados de um funcionário. Uma estrutura deste tipo possui
+// os seguintes campos: nome, salario, identificador e cargo.
 // a) Escreva uma funcao que receba como parˆametro o endere ̧co de uma estrutura do tipo Funcionario
 // e preencha seus campos com valores fornecidos pelo usu ́ario via teclado.
 // b) Escreva uma fun ̧c ̃ao que receba como parˆametro o endere ̧co de uma estrutura do tipo Funcionario
