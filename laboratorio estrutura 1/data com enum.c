@@ -47,17 +47,10 @@ int main()
 
     scanf(" %[^\n]", data.ano);
 
-    if (data.meses < 10)
-    {
+   
 
-        printf("data: %s/0%d/%s", data.dia, data.meses, data.ano);
-    }
-
-    else
-    {
-
-        printf("data: %s/%d/%s", data.dia, data.meses, data.ano);
-    }
+        printf("data: %s/%02d/%s", data.dia, data.meses, data.ano);
+    
 
     return 0;
 }
