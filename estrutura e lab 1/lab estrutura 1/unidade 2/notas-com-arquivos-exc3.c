@@ -36,7 +36,7 @@ int main(void)
 
     return 0;
 }
-// saida:
+// entrada:
 // Amanda	7.0	6.5	9.0
 // Alberto	5.0	7.0	3.5
 // Jane	8.0	6.8	4.5
