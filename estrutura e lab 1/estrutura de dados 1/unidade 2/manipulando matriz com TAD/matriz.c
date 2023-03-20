@@ -7,59 +7,58 @@ typedef struct matriz
     int col;
     float *v;
 
-} Matriz;
+}Matriz;
 
 Matriz *mat_cria(int m, int n)
 {
-    int i;
 
-    Matriz **nova_matriz = (Matriz **)malloc(m * sizeof(Matriz *));
-    for (i = 0; i < m; i++)
-    {
-        nova_matriz[i]->v = (float *)malloc(n * sizeof(float));
-        nova_matriz[i]->lin = m;
-        nova_matriz[i]->col = n;
-    }
+    Matriz *nova_matriz = (Matriz *)malloc(m * sizeof(Matriz));
+    nova_matriz->lin = m;
+    nova_matriz->col = n;
+    float *v = (float *)malloc(n * sizeof(float));
+    nova_matriz->v=v;
 
     return nova_matriz;
 }
 
 void mat_libera(Matriz *mat)
 {
-    int i, j;
-    for (i = 0; i < mat->lin; i++)
-    {
         free(mat->v);
-    }
+   
     free(mat);
 }
+
 float mat_acessa(Matriz *mat, int i, int j)
 {
-
-    return mat[i].v[j];
+    if(mat->lin>=i && mat->col>=j){
+    return mat->v[i+j];
+    }else{
+        printf("o elemento nao existe na matriz,a funcao retornara -1");
+        return (-1);
+    }
 }
+
 void mat_atribui(Matriz *mat, int i, int j, float v)
 {
+    if(mat->lin>=i && mat->col>=j){
 
-    mat[i].v[j] = v;
+    mat->v[j+i] = v;
+
+    }
+    else{
+        printf("o elemento nao existe na matriz");
+    }
+    
 }
+
 int mat_linhas(Matriz *mat)
 {
-    int soma = 0, i;
-    for (i = 0; i < mat->lin; i++)
-    {
-        soma++;
-    }
-
-    return soma;
+ 
+    return mat->lin;
 }
-int mat_linhas(Matriz *mat)
-{
-    int soma = 0, j;
-    for (j = 0; j < mat->lin; j++)
-    {
-        soma++;
-    }
 
-    return soma;
+int mat_colunas(Matriz *mat)
+{
+ 
+    return mat->col;
 }

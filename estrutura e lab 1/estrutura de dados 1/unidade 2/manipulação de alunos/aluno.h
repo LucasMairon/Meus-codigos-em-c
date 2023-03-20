@@ -1,3 +1,5 @@
+#include"aluno.c"
+
 typedef struct aluno Aluno;
 
 Aluno* aluno_cria(char* nome, float nota);

@@ -23,12 +23,16 @@ void aluno_libera(Aluno* a){
 
 }
 void aluno_imprime(Aluno* a){
-    printf("aluno: %s, nota: %f",a->nome,a->nota);
+    printf("aluno: %s\nnota: %.2f\n",a->nome,a->nota);
 
 }
 void aluno_ordena(int n, Aluno** v){
 int i;
 
+
+
+}
+void aluno_salva(FILE* fp, int n, Aluno** v){
 
 
 }
