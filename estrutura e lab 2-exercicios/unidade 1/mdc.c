@@ -35,3 +35,5 @@ int main(){
 //depende dos numeros que a pessoa colocar
 //c) Descubra o que ocorre quando um parˆametro ´e 0.
 // se um dos numeros for zero a função vai retornar o outro parametro, contanto que o outro seja diferente de 0
+//d) Descubra o que ocorre quando os dois parˆametros apresentados s˜ao iguais e maiores que 1.
+//o procedimento só acontece uma vez,e o resultado vai ser o proprio numero
