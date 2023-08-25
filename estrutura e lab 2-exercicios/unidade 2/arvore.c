@@ -49,11 +49,13 @@ No* remove_elemento(No* raiz, int dados){
         raiz->dir = remove_elemento(raiz->dir,dados);
     }else{
 
-        if(raiz->esq == 0){
+        if(raiz->esq == NULL){
             return raiz->dir;
-        }else if(raiz->dir == 0){
+        }else if(raiz->dir == NULL){
             return raiz->esq;
         }
+        raiz->valor = sucessor(raiz->dir);
+        raiz->dir = remove_elemento(raiz->dir,raiz->valor);
 
     }
 
@@ -65,4 +67,23 @@ void imprimeArvore(No* raiz){
         printf(" %d ",raiz->valor);
         imprimeArvore(raiz->dir);
     }
+}
+
+int alturaDoNo(No* raiz){
+    if(raiz == NULL){
+        return 0;
+    }
+    return raiz->altura;
+}
+
+int sucessor(No* raiz){
+    int s = raiz->valor;
+    while(raiz->esq != NULL){
+        s = raiz->esq->valor;
+        raiz = raiz->esq;
+    }
+    raiz->esq = NULL;
+    return s;
+    
+   
 }
