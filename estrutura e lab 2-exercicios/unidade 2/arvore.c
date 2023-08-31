@@ -2,7 +2,7 @@
 #include<stdlib.h>
 #include"arvore.h"
 
-typedef struct no No;
+// typedef struct no No;
 struct no{
     int valor;
     int altura;
@@ -15,7 +15,7 @@ No* insere_elemento(No* raiz,int dados){
         No *novoNo = (No*)malloc(sizeof(No));
         novoNo->valor = dados;
         novoNo->dir = novoNo->esq = NULL;
-        //novoNo->altura = 1;
+        novoNo->altura = 1;
         return novoNo;
     }
     else if(dados < raiz->valor){
@@ -25,17 +25,17 @@ No* insere_elemento(No* raiz,int dados){
     }else{
         printf("este valor ja esta na arvore");
     }
-    raiz->altura = altura(raiz) + 1;
+    raiz->altura = alturaDaArvore(raiz) + 1;
 }
 
-int altura(No* raiz){
+int alturaDaArvore(No* raiz){
     int alturaEsq,alturaDir;
     if(raiz == NULL){
         return -1;
     }
-    alturaEsq = altura(raiz->esq);
-    alturaDir = altura(raiz->dir);
-    return (alturaEsq > alturaDir)? alturaEsq + 1: alturaDir + 1;
+    alturaEsq = alturaDaArvore(raiz->esq);
+    alturaDir = alturaDaArvore(raiz->dir);
+    return max(alturaDir,alturaEsq) + 1;
     
 }
 
@@ -86,4 +86,51 @@ int sucessor(No* raiz){
     return s;
     
    
+}
+int max(int a,int b){
+    return (a > b) ? a : b;
+}
+
+int balanceamento(No* raiz){
+    if(raiz == NULL){
+        return 0;
+    }
+
+    return alturaDaArvore(raiz->esq) - alturaDaArvore(raiz->dir);
+}
+
+int verificaBalanceamento(No* raiz){
+    if(raiz == NULL){
+        return 1;
+    }
+
+    int alturaEsq,alturaDir;
+    alturaEsq = alturaDaArvore(raiz->esq);
+    alturaDir = alturaDaArvore(raiz->dir);
+
+    int balanceamento = (alturaEsq > alturaDir) ? alturaEsq - alturaDir : alturaDir - alturaEsq;
+
+    if(balanceamento > 1){
+        return 0;
+    }
+}
+
+No* rotacaoDir(No* raiz){
+    No* novoNo = raiz->esq;
+    raiz->esq = novoNo->dir;
+    novoNo->dir = raiz;
+
+    raiz->altura = max(alturaDoNo(raiz->esq), alturaDoNo(raiz->dir)) + 1;
+    novoNo->altura = max(alturaDoNo(novoNo->esq), alturaDoNo(novoNo->dir)) + 1;
+    return novoNo;
+}
+
+No* rotacaoEsq(No* raiz){
+    No* novoNo = raiz->dir;
+    raiz->esq = novoNo->esq;
+    novoNo->dir = raiz;
+
+    raiz->altura = max(alturaDoNo(raiz->esq), alturaDoNo(raiz->dir)) + 1;
+    novoNo->altura = max(alturaDoNo(novoNo->esq), alturaDoNo(novoNo->dir)) + 1;
+    return novoNo;
 }
