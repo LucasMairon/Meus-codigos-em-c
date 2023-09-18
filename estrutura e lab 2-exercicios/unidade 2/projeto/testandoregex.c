@@ -2,34 +2,32 @@
 #include<stdio.h>
 
 int main(){
-    // o /g é para dizer q é global, é mais para quando tem muita informações então acho que não precisa
-    //regex para telefone: /[0-9]{5}[-][0-9]{4}/g
-    //regex para telefone sem barra: /[0-9]{9}/g
-    //regex para telefone com ddd e barra: /[(][0-9]{2}[)][0-9]{5}[-][0-9]{4}/g
-    //regex para telefone com ddd e sem barra: /[(][0-9]{2}[)][0-9]{9}/g
-    //regex para nome: /[a-z && A-Z]+/g
-
-
+    
     regex_t regex;
-  int valor;
+    //int valor;
+    int valor2;
 
-valor = regcomp(&regex,"([a-z 0-9\.\-]{2,})@([a-z 0-9]{2,})(\.[a-z]{2,})?", "/g");
-  if (valor == 0) {
+    //valor = regcomp(&regex,"([a-z0-9\.\-]{2,})@([a-z 0-9]{2,})(\.[a-z]{2,})(\.[a-z]{2,})?", 1);
+    //não ta funcionando :
+    //valor2 = regcomp(&regex,"([0-9]{2})\s([0-9]{4,5})\-([0-9]{4})",1);
+    valor2 = regcomp(&regex,"([0-9]{2})([0-9]{4,5})([0-9]{4})",1);
+  if (valor2 == 0) {
         printf("RegEx compiled successfully.\n");
     }
     else {
         printf("Compilation error.\n");
     }
 
-  char email[] = "lucas@gmail.com";
+  //char email[] = "lucAs@gmail.com";
+  char tel[] = "8499896167";
    
-  valor = regexec(&regex,email, 0, NULL, /g);
+  valor2 = regexec(&regex,tel, 0, NULL, 1);
 
   
-if (valor == 0) {
+if (valor2 == 0) {
         printf("Pattern found.\n");
     }
-    else if (valor == REG_NOMATCH) {
+    else if (valor2 == REG_NOMATCH) {
         printf("Pattern not found.\n");
     }
     else {
